@@ -10,25 +10,28 @@ class TransactionList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        //convertendo os elementos para elementos visuais
-        children: transactions.map((tr) {
+      height: 300,
+      child: ListView.builder(
+        itemCount: transactions.length,
+        itemBuilder: (ctx, index) {
+          final tr = transactions[index];
           return Card(
             child: Row(children: <Widget>[
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   decoration: BoxDecoration(
                       border: Border.all(
-                    color: Colors.purple,
+                    color: Theme.of(context).colorScheme.primary,
                     width: 2,
                   )),
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'R\$ ${tr.value.toStringAsFixed(2)}',
                     style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.purple),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   )),
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 Text(
@@ -44,8 +47,10 @@ class TransactionList extends StatelessWidget {
               ])
             ]),
           );
-        }).toList(),
+        },
       ),
     );
   }
 }
+
+//color: Theme.of(context).colorScheme.primary,
